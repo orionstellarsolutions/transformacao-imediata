@@ -6,24 +6,20 @@
   <section id="sobre" class="relative z-10 py-24 md:py-32 bg-dark-surface/40">
     <div class="container mx-auto px-6 max-w-4xl">
       <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-        <!-- Foto Circular com Moldura Dourada -->
+        <!-- Foto Circular Oficial da Laís Gulin -->
         <div class="shrink-0 relative">
-          <div class="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-gold/60 to-gold/10 blur-sm"></div>
-          <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_35px_rgba(212,175,55,0.25)]">
+          <div class="relative w-52 h-52 md:w-64 md:h-64 flex items-center justify-center">
             <img
               src="/images/lais_avatar_circle.png"
-              alt="Laís Gulin - Mentora e Desenvolvedora Humana"
-              class="w-full h-full object-cover object-center"
+              alt="Laís Gulin - Analista Comportamental e Desenvolvedora Humana"
+              class="w-full h-full object-contain filter drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] transition duration-500 hover:scale-105"
               loading="lazy"
             />
           </div>
         </div>
 
-        <!-- Conteúdo Biográfico -->
+        <!-- Conteúdo Biográfico Oficial -->
         <div class="text-center md:text-left flex-1">
-          <div class="inline-block rounded-full bg-gold/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-gold mb-3">
-            Sua Mentora
-          </div>
           <h2 class="font-heading text-3xl md:text-4xl font-normal text-white mb-2">
             LAÍS GULIN
           </h2>
@@ -33,20 +29,20 @@
 
           <div class="space-y-4 text-gray-300 text-sm md:text-base font-light leading-relaxed">
             <p>
-              Com anos de dedicação ao estudo da mente e do comportamento humano, Laís Gulin estruturou
-              uma metodologia direta e transformadora para conduzir você para fora dos ciclos de ansiedade e insegurança.
+              Há mais de 11 anos, ajudo pessoas e empresas a conquistarem alta performance, bem-estar e fluidez —
+              unindo o comando emocional, a comunicação eficaz e a transformação de crenças por meio das emoções.
             </p>
             <p>
-              Unindo inteligência emocional prática, neurociência aplicada e alinhamento de comunicação,
-              sua missão é capacitar indivíduos a assumirem o comando consciente de suas decisões,
-              alcançando clareza mental e paz de espírito.
+              Minha atuação é guiada por ferramentas integrativas vindas de diferentes partes do mundo.
+              Utilizo palavras, sons, movimentos, músicas, florais, leituras e, principalmente, a escuta do
+              corpo e da mente para facilitar processos profundos de autoconhecimento e mudança.
             </p>
           </div>
 
-          <!-- Citação Destacada -->
-          <div class="mt-6 pt-6 border-t border-white/10">
-            <blockquote class="italic text-gold text-base md:text-lg font-heading">
-              “O meu viver é o ponto para o seu crescer.”
+          <!-- Citação Oficial com Barra Vertical Dourada -->
+          <div class="mt-6 border-l-2 border-gold pl-4 text-left">
+            <blockquote class="italic text-gold text-sm md:text-base font-heading">
+              "O meu viver é a ponte para o seu crescer."
             </blockquote>
           </div>
         </div>

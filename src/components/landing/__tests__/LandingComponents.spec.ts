@@ -83,7 +83,7 @@ describe('Landing Page Components', () => {
 
       expect(wrapper.text()).toContain('LAÍS GULIN');
       expect(wrapper.text()).toContain('Analista Comportamental');
-      expect(wrapper.text()).toContain('O meu viver é o ponto para o seu crescer');
+      expect(wrapper.text()).toContain('O meu viver é a ponte para o seu crescer');
 
       const avatar = wrapper.find('img');
       expect(avatar.exists()).toBe(true);
