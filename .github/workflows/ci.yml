@@ -95,14 +95,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: '95d621bdb59aee8175fc109ac9f38330'
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
-            echo "::error title=Secret Ausente::O secret CLOUDFLARE_API_TOKEN não está definido no repositório GitHub."
+            echo "::warning title=Secret Ausente::O secret CLOUDFLARE_API_TOKEN não está definido no repositório GitHub."
             echo "Para habilitar o deploy automático via GitHub Actions:"
             echo "1. Acesse https://dash.cloudflare.com/profile/api-tokens"
             echo "2. Crie um token com permissão Cloudflare Pages (Read + Write)"
             echo "3. No repositório GitHub, acesse Settings -> Secrets and variables -> Actions"
             echo "4. Adicione o secret CLOUDFLARE_API_TOKEN com o token gerado"
             echo "Nota: Caso utilize a integração Git nativa do Cloudflare Pages, os deploys já ocorrem no push."
-            exit 1
+            exit 0
           fi
 
           echo "Iniciando publicação com Wrangler v4..."
