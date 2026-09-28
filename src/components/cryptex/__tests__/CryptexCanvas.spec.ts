@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import CryptexCanvas from '../CryptexCanvas.vue';
+import { playLockSound, playTickSound } from '../../../utils/audioSynth';
 
 // Mock do Web Audio
 vi.mock('../../../utils/audioSynth', () => ({
@@ -43,7 +44,18 @@ describe('CryptexCanvas.vue', () => {
     expect(wrapper.emitted('update-rings-aligned')).toBeTruthy();
   });
 
-  it('deve expor os métodos rotateRing e skipChallenge', () => {
+  it('deve montar com isUnlocked = true quando a prop for fornecida', () => {
+    const wrapper = mount(CryptexCanvas, {
+      props: {
+        isUnlocked: true,
+      },
+    });
+
+    const vm = wrapper.vm as unknown as { isUnlocked: boolean };
+    expect(vm.isUnlocked).toBe(true);
+  });
+
+  it('deve expor e executar os métodos rotateRing e skipChallenge corretamente', () => {
     const wrapper = mount(CryptexCanvas);
     const vm = wrapper.vm as unknown as {
       rotateRing: (index: number, direction: 1 | -1) => void;
@@ -53,8 +65,63 @@ describe('CryptexCanvas.vue', () => {
     expect(typeof vm.rotateRing).toBe('function');
     expect(typeof vm.skipChallenge).toBe('function');
 
-    expect(() => vm.rotateRing(0, 1)).not.toThrow();
-    expect(() => vm.skipChallenge()).not.toThrow();
+    // Gira anel e toca som
+    vm.rotateRing(0, 1);
+    expect(playTickSound).toHaveBeenCalled();
+
+    // Pula o desafio para zerar os passos e disparar alinhamento
+    vm.skipChallenge();
+    expect(wrapper.emitted('update-rings-aligned')).toBeTruthy();
+  });
+
+  it('deve responder aos eventos de mousemove e resize', () => {
+    const wrapper = mount(CryptexCanvas);
+
+    // Dispara mousemove
+    window.dispatchEvent(
+      new MouseEvent('mousemove', {
+        clientX: 500,
+        clientY: 300,
+      })
+    );
+
+    // Dispara resize desktop
+    window.innerWidth = 1200;
+    window.innerHeight = 800;
+    window.dispatchEvent(new Event('resize'));
+
+    // Dispara resize mobile
+    window.innerWidth = 375;
+    window.innerHeight = 667;
+    window.dispatchEvent(new Event('resize'));
+
+    expect(wrapper.vm).toBeTruthy();
+  });
+
+  it('deve tocar som de lock quando o anel atingir múltiplo de 10 passos', () => {
+    const wrapper = mount(CryptexCanvas);
+    const vm = wrapper.vm as unknown as {
+      rotateRing: (index: number, direction: 1 | -1) => void;
+    };
+
+    // Anel 0 começa em 3. Com 7 passos atinge 10
+    for (let i = 0; i < 7; i++) {
+      vm.rotateRing(0, 1);
+    }
+
+    expect(playLockSound).toHaveBeenCalled();
+  });
+
+  it('deve disparar a sequência cinematográfica de desbloqueio ao zerar os passos', async () => {
+    vi.useFakeTimers();
+    const wrapper = mount(CryptexCanvas);
+    const vm = wrapper.vm as unknown as { skipChallenge: () => void };
+
+    vm.skipChallenge();
+    vi.advanceTimersByTime(2500);
+
+    expect(wrapper.emitted('update-rings-aligned')).toBeTruthy();
+    vi.useRealTimers();
   });
 
   it('deve limpar event listeners e cancelar animação no unmount', () => {
