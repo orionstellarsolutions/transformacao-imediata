@@ -11,6 +11,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@tech-leads-club/agent-skills": "^1.4.9",
     "@types/three": "^0.186.0",
     "@vitejs/plugin-vue": "^6.0.9",
@@ -18,6 +19,7 @@
     "@vue/test-utils": "^2.5.1",
     "eslint": "^10.11.0",
     "happy-dom": "^20.14.5",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "vite": "^8.3.0",
     "vitest": "^5.0.1",

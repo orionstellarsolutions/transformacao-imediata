@@ -43,6 +43,15 @@
   3. Criado arquivo `lighthouserc.json` com flags otimizadas (`--no-sandbox`, `--headless=new`, `--disable-gpu`, `--disable-dev-shm-usage`) e vinculado ao workflow do GitHub Actions.
 * **Estado:** Resolvido e validado localmente com build e testes 100% aprovados.
 
+### Incidente UI #004 - Ausência de Tailwind CSS e Fundo Branco no Canvas WebGL
+* **Ocorrência:** As classes utilitárias do Tailwind não estavam sendo processadas no build (CSS compilado tinha apenas 0.78 kB) e o canvas 3D com `alpha: true` deixava transparecer o fundo branco padrão do navegador, exibindo o Cryptex e partículas contra um fundo branco sem os controles estilizados.
+* **Resolução:**
+  1. Instalado `@tailwindcss/vite` e `tailwindcss` (v4) nas dependências de desenvolvimento.
+  2. Criado `src/style.css` com os tokens de design do projeto (ouro `#d4af37`, superfície `#0a0a0c`, background `#020202`, fontes Cinzel e Inter) e classes do modelo legado (`.site-backdrop`, `.glass-panel`, `.text-gold-gradient`, scrollbars personalizados).
+  3. Importado `src/style.css` no `src/main.ts` e configurado o plugin `tailwindcss()` no `vite.config.ts`.
+  4. Inserido estilo crítico anti-flash no `<head>` do `index.html` e definido `scene.background = new THREE.Color(0x020202)` no Three.js para garantir fundo escuro absoluto sob qualquer condição de carregamento.
+* **Estado:** Resolvido. Build CSS aumentou para 31.63 kB com todos os utilitários e animações funcionais.
+
 ---
 
 ## Configurações de Ambiente e Integrações

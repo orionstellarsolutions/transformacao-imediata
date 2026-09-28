@@ -59,6 +59,9 @@ function onUnlocked() {
 
 <template>
   <div class="relative min-h-screen bg-dark text-white selection:bg-gold selection:text-black">
+    <!-- Efeito de iluminação e vinheta de fundo -->
+    <div class="site-backdrop"></div>
+
     <!-- Cena 3D de Fundo e Transição (Sempre ativa em segundo plano) -->
     <CryptexCanvas
       ref="cryptexRef"
