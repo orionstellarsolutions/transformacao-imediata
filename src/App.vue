@@ -6,6 +6,8 @@ import type { RingPosition } from './components/cryptex/PuzzleControls.vue';
 import HeaderNav from './components/landing/HeaderNav.vue';
 import HeroSection from './components/landing/HeroSection.vue';
 import MethodSection from './components/landing/MethodSection.vue';
+import ModulesSection from './components/landing/ModulesSection.vue';
+import BioSection from './components/landing/BioSection.vue';
 import CheckoutSection from './components/landing/CheckoutSection.vue';
 import SiteFooter from './components/landing/SiteFooter.vue';
 import OrionFooter from './components/OrionFooter.vue';
@@ -92,6 +94,8 @@ function onUnlocked() {
       <HeaderNav />
       <HeroSection />
       <MethodSection />
+      <ModulesSection />
+      <BioSection />
       <CheckoutSection />
       <SiteFooter />
     </main>

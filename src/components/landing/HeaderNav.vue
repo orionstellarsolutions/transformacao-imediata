@@ -8,8 +8,11 @@
   >
     <div class="container mx-auto flex items-center justify-between px-6 py-4">
       <!-- Logotipo -->
-      <a href="#" class="font-heading text-xl md:text-2xl font-bold tracking-widest text-white">
-        MENTE <span class="text-gold">LIVRE</span>
+      <a href="#" class="font-heading text-lg md:text-xl font-normal tracking-widest text-white flex items-center gap-2">
+        <svg class="h-4 w-4 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        <span>TRANSFORMAÇÃO <strong class="font-bold text-white">IMEDIATA</strong></span>
       </a>
 
       <!-- Links de Navegação -->

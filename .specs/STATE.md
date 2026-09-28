@@ -92,6 +92,19 @@
   3. Simplificada a detecção de teste para rodar o loop contínuo de 60fps para qualquer usuário em produção e desacelerar somente sob `?ci=1`.
 * **Estado:** Resolvido e publicado em produção no Cloudflare Pages via Wrangler.
 
+### Marco 3 - Reconstrução Fiel ao Vídeo Oficial (Laís Gulin - Transformação Imediata)
+* **Ocorrência:** O usuário forneceu o vídeo de gravação oficial (`modelo/001.mp4`) informando que o modelo legado anterior estava desatualizado. Solicitou reconstruir o site para ficar 100% idêntico à identidade da Laís Gulin.
+* **Resolução:**
+  1. **Extração de Assets em Alta Resolução:** Extraídos frames oficiais do vídeo via OpenCV (`public/images/lais_hero_final.png` com o card dourado e batom vermelho, e `public/images/lais_avatar_circle.png` com avatar circular nítido).
+  2. **Header e Hero:** H1 "CURSO TRANSFORMAÇÃO IMEDIATA", descrição oficial de Inteligência Emocional, badge de cadeado e imagem oficial.
+  3. **Pilares do Método:** "CONTROLE E GESTÃO DAS EMOÇÕES EM PASSOS SIMPLES" com ícone de raio ⚡ e os 3 pilares oficiais.
+  4. **Novo Componente ModulesSection:** Acordeão interativo com as 12 aulas oficiais do curso, incluindo o bônus com Juliana Karam.
+  5. **Novo Componente BioSection:** Perfil completo da instrutora Laís Gulin com avatar circular, credenciais e citação ("O meu viver é o ponto para o seu crescer").
+  6. **Checkout Atualizado:** Preço oficial de R$ 297,00 (12x de R$ 29,72), selos de 7 dias de garantia, acesso multidispositivo e link direto para a Hotmart (`Q90065181S`).
+  7. **Compatibilidade Windows no Vite/Vitest:** Configurado `template.transformAssetUrls: { includeAbsolute: false }` para evitar que URLs absolutas de assets públicos (`/images/...`) sejam convertidas em caminhos de arquivo locais inválidos no Windows.
+  8. **Garantia de Qualidade:** 32 testes unitários passando em 6 suítes com 100% de cobertura nos componentes da landing page, lint zero erros, `vue-tsc` sem emissão de erros e build de produção gerado com sucesso.
+* **Estado:** Concluído e pronto para deploy de produção e sincronização git.
+
 ---
 
 ## Configurações de Ambiente e Integrações
