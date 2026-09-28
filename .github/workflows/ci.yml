@@ -42,4 +42,13 @@ jobs:
             http://localhost:3000
           startServerCommand: npm run preview
           uploadTarget: 'temporary-public-storage'
-          budgetPath: './lighthouse-budget.json'
+          budgetPath: './lighthouse-budget.json'
+
+      - name: Deploy no Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: '95d621bdb59aee8175fc109ac9f38330'
+          command: pages deploy dist --project-name=transformacao-imediata --branch=main
+

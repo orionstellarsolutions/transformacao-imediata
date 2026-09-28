@@ -1,8 +1,16 @@
 # Estado do Projeto e Histórico de Decisões (.specs/STATE.md)
 
 ## Estado Atual
-- **Fase**: Manutenção / Infraestrutura CI/CD e Qualidade
-- **Status Geral**: Pipeline completo de CI/CD (lint, type-check, test:coverage, build, lighthouse) estabilizado e validado.
+- **Fase**: Marco 2 - Fase 2 (Test Planner / Matriz de Testes Automatizados)
+- **Status Geral**: Requisitos refinados pelo Product Owner com decisões de negócio consolidadas (Hotmart, persistência de desbloqueio, dívida técnica do vídeo e plano em `.specs/tasks.md`). Passagem de bastão para o Test Planner estruturar a matriz de testes automatizados com cobertura $\ge 95\%$.
+
+---
+
+## Decisões Técnicas e de Negócio (Marco 2 - O Código da Mente)
+* **Checkout Hotmart:** Botão de compra principal configurado com a URL real da Hotmart (`https://hotmart.com/pt-br/marketplace/produtos/transformacao-imediata/Q90065181S`) e oferta de Ebook adicional (`https://hotmart.com/pt-br/marketplace/produtos/troque-e-transforme-sua-comunicacao/A85697379P?sck=HOTMART_PRODUCT_PAGE`).
+* **Persistência de Desbloqueio:** O estado de destravamento do Cryptex é salvo em `localStorage` (`cryptex_unlocked = 'true'`), permitindo que visitantes recorrentes acessem diretamente a landing page sem repetição do puzzle 3D.
+* **Dívida Técnica do Vídeo:** O card de vídeo no Hero será mantido esteticamente como preview/thumbnail no momento, registrando a integração de player real (YouTube / Vimeo / Cloudflare Stream) no arquivo `docs/tarefas/dividas_tecnicas.md`.
+* **Plano de Implementação:** Quebra em 7 micro-tarefas atômicas gravadas em `.specs/tasks.md` para suportar 1 commit atômico por tarefa.
 
 ---
 
