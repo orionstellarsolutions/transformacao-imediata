@@ -39,8 +39,10 @@ jobs:
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
-            http://localhost:3000
+            http://localhost:3000/
           startServerCommand: npm run preview
+          serverReadyPattern: 'Local:'
+          serverReadyTimeout: 30000
           uploadTarget: 'temporary-public-storage'
           configPath: './lighthouserc.json'
 

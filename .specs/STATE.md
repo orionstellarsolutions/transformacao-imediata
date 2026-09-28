@@ -52,6 +52,15 @@
   4. Inserido estilo crítico anti-flash no `<head>` do `index.html` e definido `scene.background = new THREE.Color(0x020202)` no Three.js para garantir fundo escuro absoluto sob qualquer condição de carregamento.
 * **Estado:** Resolvido. Build CSS aumentou para 31.63 kB com todos os utilitários e animações funcionais.
 
+### Incidente CI/CD #005 - Erro Interstitial no Chrome do Lighthouse CI (Binding e Ready Pattern)
+* **Ocorrência:** O Lighthouse CI encontrava tela de interstitial no Chrome ao conectar em `http://localhost:3000` devido ao bind do Vite preview não estar exposto em `0.0.0.0` e a uma condição de corrida antes do servidor estar pronto para responder.
+* **Resolução:**
+  1. Atualizado `package.json` para `"preview": "vite preview --port 3000 --host 0.0.0.0"`.
+  2. Fixado `host: '0.0.0.0'` em `server` e `preview` no `vite.config.ts`.
+  3. No workflow do GitHub Actions (`.github/workflows/ci.yml`), configurados `serverReadyPattern: 'Local:'`, `serverReadyTimeout: 30000` e URL normalizada com barra final `http://localhost:3000/`.
+  4. No `lighthouserc.json`, adicionados `skipAudits: ["uses-http2"]`, `maxWaitForFcp: 30000` e `maxWaitForLoad: 45000`.
+* **Estado:** Resolvido e validado.
+
 ---
 
 ## Configurações de Ambiente e Integrações
