@@ -24,3 +24,17 @@
   5. Criado arquivo de orçamento de performance móvel (`lighthouse-budget.json`) e adicionado `startServerCommand: npm run preview` no workflow `.github/workflows/ci.yml`.
 * **Estado:** Resolvido e validado com commits atômicos por tarefa.
 * **Validação Local:** `npm run lint`, `npm run type-check`, `npm run test:coverage` e `npm run build` executados com 100% de aprovação.
+
+---
+
+## Configurações de Ambiente e Integrações
+
+### Configuração de Agente: Cloudflare Skills & Servidores MCP
+* **Origem:** Instruções oficiais de setup Cloudflare (`https://developers.cloudflare.com/agent-setup/prompt.md`).
+* **Ações Executadas:**
+  1. Instalação das 14 skills oficiais do Cloudflare (`wrangler`, `workers-best-practices`, `durable-objects`, `agents-sdk`, `web-perf`, etc.) via `skills add` global (`~/.agents/skills`) e local (`.agents/skills/`).
+  2. Registro dos 5 servidores MCP da Cloudflare (`cloudflare`, `cloudflare-docs`, `cloudflare-bindings`, `cloudflare-builds`, `cloudflare-observability`):
+     - Globalmente em `~/.gemini/config/mcp_config.json` (Antigravity).
+     - No repositório em `.cursor/mcp.json` e `.vscode/mcp.json`.
+* **Estado:** Configuração concluída e pronta para autenticação OAuth sob demanda.
+
