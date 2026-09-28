@@ -35,16 +35,25 @@ jobs:
       - name: Build da Aplicação
         run: npm run build
 
+      - name: Iniciar Servidor Preview Local
+        run: |
+          npm run preview &
+          for i in $(seq 1 30); do
+            if curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000/ | grep -q "200"; then
+              echo "Preview server pronto na porta 3000!"
+              break
+            fi
+            echo "Aguardando preview server..."
+            sleep 1
+          done
+
       - name: Auditoria de Performance Mobile (Lighthouse CI)
         uses: treosh/lighthouse-ci-action@v11
         with:
           urls: |
             http://localhost:3000/
-          startServerCommand: npm run preview
-          serverReadyPattern: 'Local:'
-          serverReadyTimeout: 30000
-          uploadTarget: 'temporary-public-storage'
           configPath: './lighthouserc.json'
+          temporaryPublicStorage: true
 
       - name: Deploy no Cloudflare Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

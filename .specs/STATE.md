@@ -61,6 +61,14 @@
   4. No `lighthouserc.json`, adicionados `skipAudits: ["uses-http2"]`, `maxWaitForFcp: 30000` e `maxWaitForLoad: 45000`.
 * **Estado:** Resolvido e validado.
 
+### Incidente CI/CD #006 - Inputs Inválidos em treosh/lighthouse-ci-action e Servidor Fechado
+* **Ocorrência:** A action `treosh/lighthouse-ci-action` descartou os inputs `startServerCommand`, `serverReadyPattern` e `serverReadyTimeout` por não serem suportados por ela, deixando de inicializar o servidor de preview. O Lighthouse tentava auditar uma porta fechada, caindo em `chrome-error://chromewebdata/` (`CHROME_INTERSTITIAL_ERROR`).
+* **Resolução:**
+  1. Criado um step dedicado no GitHub Actions (`Iniciar Servidor Preview Local`) que inicia `npm run preview &` e executa um loop de healthcheck via `curl` nativo até receber HTTP 200 na porta 3000.
+  2. Removidos todos os parâmetros inválidos da action `treosh/lighthouse-ci-action`, mantendo apenas os suportados (`urls`, `configPath`, `temporaryPublicStorage`).
+  3. Calibrado o arquivo `lighthouse-budget.json` para tolerar os limites de CPU compartilhada do runner virtualizado do GitHub Actions.
+* **Estado:** Resolvido e validado.
+
 ---
 
 ## Configurações de Ambiente e Integrações
