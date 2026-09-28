@@ -92,6 +92,16 @@
   3. Simplificada a detecção de teste para rodar o loop contínuo de 60fps para qualquer usuário em produção e desacelerar somente sob `?ci=1`.
 * **Estado:** Resolvido e publicado em produção no Cloudflare Pages via Wrangler.
 
+### Incidente CI/CD #010 - Erro Opaco em cloudflare/wrangler-action@v3 e Pipeline Redesenhado do Zero
+* **Ocorrência:** A action `cloudflare/wrangler-action@v3` no GitHub Actions falhava com erro opaco `The process '/opt/hostedtoolcache/node/20.20.2/x64/bin/npx' failed with exit code 1`. A action instalava uma versão defasada do Wrangler (v3.90.0), engolia saídas detalhadas de erro quando os secrets estavam ausentes e acoplava o deploy diretamente ao mesmo job de testes e linting.
+* **Resolução:**
+  1. **Separação Arquitetural de Jobs:** O workflow `.github/workflows/ci.yml` foi reescrito do zero e dividido em dois estágios isolados:
+     - `quality-and-performance`: Executa lint, checagem estática TypeScript, testes unitários com cobertura v8, build e auditoria Lighthouse CI. Salva o artefato compilado (`dist/`) via `actions/upload-artifact@v4`.
+     - `deploy-production`: Depende de `needs: quality-and-performance` (só entra em ação com 100% de sucesso nos gates de qualidade e na branch `main`).
+  2. **Wrangler v4 como Dependência do Projeto:** Adicionado `"wrangler": "^4.112.0"` ao `devDependencies` e o script `"deploy": "wrangler pages deploy dist --project-name=transformacao-imediata --branch=main --commit-dirty=true"` no `package.json`.
+  3. **Diagnóstico Amigável e Execução Nativa:** Substituída a action de terceiros por script nativo com Wrangler v4. Caso o secret `CLOUDFLARE_API_TOKEN` não esteja configurado no GitHub do usuário, o pipeline emite mensagem formatada com instruções passo a passo para configuração em `Settings -> Secrets -> CLOUDFLARE_API_TOKEN`, eliminando logs opacos.
+* **Estado:** Resolvido e validado com sucesso local e em produção.
+
 ### Marco 3 - Reconstrução Fiel ao Vídeo Oficial (Laís Gulin - Transformação Imediata)
 * **Ocorrência:** O usuário forneceu o vídeo de gravação oficial (`modelo/001.mp4`) informando que o modelo legado anterior estava desatualizado. Solicitou reconstruir o site para ficar 100% idêntico à identidade da Laís Gulin.
 * **Resolução:**
