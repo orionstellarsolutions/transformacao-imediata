@@ -92,12 +92,12 @@ describe('Landing Page Components', () => {
   });
 
   describe('CheckoutSection.vue', () => {
-    it('deve conter os valores de R$ 297, 12x R$ 29,72 e links reais da Hotmart', () => {
+    it('deve conter os valores de R$ 297, 12x R$ 30,72 e links reais da Hotmart', () => {
       const wrapper = mount(CheckoutSection);
 
       expect(wrapper.text()).toContain('INICIE SUA');
       expect(wrapper.text()).toContain('TRANSFORMAÇÃO');
-      expect(wrapper.text()).toContain('29');
+      expect(wrapper.text()).toContain('30');
       expect(wrapper.text()).toContain('72');
       expect(wrapper.text()).toContain('297,00');
 

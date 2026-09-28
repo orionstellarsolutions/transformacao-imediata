@@ -37,7 +37,7 @@ const HOTMART_EBOOK_URL =
             <div class="my-6">
               <span class="text-xs uppercase tracking-wider text-gray-400 block mb-1">Por apenas</span>
               <div class="font-heading font-bold text-gold text-4xl md:text-5xl">
-                12x R$ 29<span class="text-2xl text-gray-300">,72</span>
+                12x R$ 30<span class="text-2xl text-gray-300">,72</span>
               </div>
               <p class="text-xs text-gray-400 mt-1">ou R$ 297,00 à vista no cartão / PIX</p>
             </div>
