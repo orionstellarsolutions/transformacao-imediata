@@ -114,6 +114,9 @@ describe('Landing Page Components', () => {
       expect(btnEbook.attributes('href')).toBe(
         'https://hotmart.com/pt-br/marketplace/produtos/troque-e-transforme-sua-comunicacao/A85697379P?sck=HOTMART_PRODUCT_PAGE'
       );
+      expect(wrapper.text()).toContain('Mais barato que um cafezinho');
+      expect(wrapper.text()).toContain('5');
+      expect(wrapper.text()).toContain('97');
     });
   });
 

@@ -90,31 +90,63 @@ const HOTMART_EBOOK_URL =
           </div>
         </div>
 
-        <!-- Card Ebook Complementar -->
+        <!-- Card Ebook Complementar (Downsell / Entrada Acessível) -->
         <div
-          class="md:col-span-4 rounded-lg border border-white/10 bg-dark-surface/70 p-6 backdrop-blur-md flex flex-col justify-between text-left"
+          class="md:col-span-4 rounded-lg border border-amber-500/40 bg-gradient-to-b from-dark-surface/95 to-black/95 p-6 backdrop-blur-md flex flex-col justify-between text-left shadow-[0_0_30px_rgba(245,158,11,0.12)] relative overflow-hidden"
         >
+          <!-- Efeito sutil de iluminação superior -->
+          <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
           <div>
-            <div class="text-[10px] uppercase tracking-wider text-gold font-semibold mb-2">
-              Leitura Complementar
+            <!-- Badge Chamativo: Mais barato que um cafezinho -->
+            <div class="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 border border-amber-500/40 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-300 mb-4">
+              <span>☕</span>
+              <span>Mais barato que um cafezinho</span>
             </div>
-            <h4 class="font-heading text-lg text-white mb-2 leading-snug">
+
+            <h4 class="font-heading text-lg md:text-xl text-white mb-2 leading-snug">
               Troque e Transforme Sua Comunicação
             </h4>
-            <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
-              Aprenda a expressar suas ideias com poder, segurança e sem ruídos para potencializar seus relacionamentos.
+
+            <p class="text-xs text-gray-300 font-light leading-relaxed mb-4">
+              Quer começar a transformar suas conversas hoje mesmo? Aprenda 10 truques linguísticos práticos para destravar respostas neurológicas positivas.
             </p>
+
+            <!-- Capa do Livro e Preço em Destaque Visual -->
+            <div class="my-3 flex items-center gap-3.5 bg-black/50 p-3 rounded-md border border-white/10">
+              <div class="w-16 h-16 shrink-0 rounded overflow-hidden shadow-md border border-amber-500/40">
+                <img
+                  src="/images/capa_ebook.jpeg"
+                  alt="Capa Livro Troque e Transforme - Laís Gulin"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="flex-1">
+                <span class="text-[10px] uppercase tracking-wider text-gray-400 block font-medium">Preço simbólico</span>
+                <div class="font-heading font-bold text-amber-400 text-2xl leading-none my-0.5">
+                  R$ 5<span class="text-base text-gray-300">,97</span>
+                </div>
+                <span class="text-[10px] text-gray-400 block">Pagamento único · Sem mensalidades</span>
+              </div>
+            </div>
           </div>
 
-          <a
-            :href="HOTMART_EBOOK_URL"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="btn-checkout-ebook"
-            class="block w-full text-center rounded-sm border border-gold/60 py-3 text-xs font-semibold uppercase tracking-widest text-gold hover:bg-gold hover:text-black transition duration-200"
-          >
-            Ver Ebook Oficial
-          </a>
+          <div class="mt-4 pt-3 border-t border-white/10">
+            <a
+              :href="HOTMART_EBOOK_URL"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="btn-checkout-ebook"
+              class="block w-full text-center rounded-sm bg-gradient-to-r from-amber-500 to-yellow-600 py-3.5 text-xs font-bold uppercase tracking-widest text-black hover:from-white hover:to-white transition duration-300 shadow-[0_0_15px_rgba(245,158,11,0.25)] mb-2"
+            >
+              Quero o Ebook por R$ 5,97
+            </a>
+
+            <div class="flex items-center justify-center gap-1.5 text-[11px] text-gray-400">
+              <span class="text-amber-400 font-bold">✓</span>
+              <span>Acesso imediato no celular, tablet e PDF</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
