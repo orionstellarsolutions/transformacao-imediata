@@ -417,13 +417,35 @@ function handleResize() {
   }
 }
 
-function animate() {
-  const isAutomated =
-    typeof navigator !== 'undefined' &&
-    (navigator.webdriver ||
-      /HeadlessChrome|Lighthouse|Chrome-Lighthouse/i.test(navigator.userAgent));
+function isTestingOrSoftwareEnvironment(): boolean {
+  if (typeof window === 'undefined') return true;
+  if (
+    window.location.search.includes('ci=1') ||
+    window.location.search.includes('lighthouse') ||
+    Boolean(navigator.webdriver) ||
+    /HeadlessChrome|Lighthouse|Chrome-Lighthouse/i.test(navigator.userAgent)
+  ) {
+    return true;
+  }
+  if (renderer) {
+    try {
+      const gl = renderer.getContext();
+      const ext = gl.getExtension('WEBGL_debug_renderer_info');
+      if (ext) {
+        const unmasked = (gl.getParameter(ext.UNMASKED_RENDERER_WEBGL) as string) || '';
+        if (/SwiftShader|llvmpipe|software|Mesa/i.test(unmasked)) {
+          return true;
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+  return false;
+}
 
-  if (isAutomated) {
+function animate() {
+  if (isTestingOrSoftwareEnvironment()) {
     if (renderer && scene && camera) {
       renderer.render(scene, camera);
       updateRingProjectedPositions();

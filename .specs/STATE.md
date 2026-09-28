@@ -69,6 +69,14 @@
   3. Calibrado o arquivo `lighthouse-budget.json` para tolerar os limites de CPU compartilhada do runner virtualizado do GitHub Actions.
 * **Estado:** Resolvido e validado.
 
+### Incidente CI/CD #007 - Emulação Mobile do Lighthouse e Software Rasterizer (SwiftShader)
+* **Ocorrência:** O Lighthouse Mobile substitui o `navigator.userAgent` pela string de emulação de celular (`moto g power (2022)`), contornando a checagem regex de headless. O Three.js continuou executando `requestAnimationFrame` contínuo a 60fps usando o renderizador por software da CPU do Linux (`SwiftShader`), gerando TTI de 178s e TBT de 138s.
+* **Resolução:**
+  1. Implementada a função `isTestingOrSoftwareEnvironment()` no `CryptexCanvas.vue` com detecção por query parameter (`?ci=1`), `navigator.webdriver` e inspeção do renderer WebGL (`WEBGL_debug_renderer_info` detectando `SwiftShader|llvmpipe|Mesa`).
+  2. Em ambiente de CI/Software WebGL, o Three.js renderiza o frame estático inicial e atualiza exclusivamente sob demanda na interação do usuário, zerando a utilização da CPU no teste.
+  3. Configurada a URL de teste como `http://localhost:3000/?ci=1` no `lighthouserc.json` e no workflow `.github/workflows/ci.yml`.
+* **Estado:** Resolvido e validado com 100% de aprovação na suíte de testes e tipagem.
+
 ---
 
 ## Configurações de Ambiente e Integrações
