@@ -42,7 +42,7 @@ jobs:
             http://localhost:3000
           startServerCommand: npm run preview
           uploadTarget: 'temporary-public-storage'
-          budgetPath: './lighthouse-budget.json'
+          configPath: './lighthouserc.json'
 
       - name: Deploy no Cloudflare Pages
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'

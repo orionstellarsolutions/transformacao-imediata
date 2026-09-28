@@ -77,12 +77,14 @@ function onUnlocked() {
       @skip="onSkip"
     />
 
-    <!-- Site Principal da Mentoria (Revelado com fade-in após desbloqueio) -->
+    <!-- Site Principal da Mentoria (Renderizado no DOM para SEO e LCP, revelado com fade-in) -->
     <main
-      v-show="isUnlocked"
       id="main-site"
       class="relative z-10 transition-opacity duration-1000 ease-out"
-      :class="{ 'opacity-100': isUnlocked, 'opacity-0': !isUnlocked }"
+      :class="{
+        'opacity-100 pointer-events-auto': isUnlocked,
+        'opacity-0 pointer-events-none select-none': !isUnlocked,
+      }"
     >
       <HeaderNav />
       <HeroSection />

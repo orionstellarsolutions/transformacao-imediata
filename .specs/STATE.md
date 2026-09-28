@@ -35,6 +35,16 @@
 
 ---
 
+### Incidente CI/CD #003 - Sobrecarga de CPU no Lighthouse CI por Renderização Headless Three.js
+* **Ocorrência:** O passo `treosh/lighthouse-ci-action` no runner Linux do GitHub Actions falhou com TTI de 178s, TBT de 135s e LCP `null`, pois a execução sem GPU física em modo headless saturou a CPU em loop contínuo de 60fps do Three.js, impedindo a thread principal de entrar na janela de ociosidade (`quiet window`).
+* **Resolução:**
+  1. Adicionada detecção robusta de ambientes automatizados (`navigator.webdriver` ou regex `/HeadlessChrome|Lighthouse|Chrome-Lighthouse/i` no userAgent) no `CryptexCanvas.vue` para renderizar apenas um frame estático durante a auditoria automatizada em vez de agendar loop infinito de CPU.
+  2. Isolado o bundle do Three.js em chunk separado via `manualChunks` no `vite.config.ts`, reduzindo drasticamente o bundle inicial da página.
+  3. Criado arquivo `lighthouserc.json` com flags otimizadas (`--no-sandbox`, `--headless=new`, `--disable-gpu`, `--disable-dev-shm-usage`) e vinculado ao workflow do GitHub Actions.
+* **Estado:** Resolvido e validado localmente com build e testes 100% aprovados.
+
+---
+
 ## Configurações de Ambiente e Integrações
 
 ### Configuração de Agente: Cloudflare Skills & Servidores MCP

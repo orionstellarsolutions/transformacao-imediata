@@ -1,9 +1,10 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "npm run preview",
-      "startServerReadyPattern": "ready|Local:|http",
-      "url": ["http://localhost:3000"]
+      "numberOfRuns": 1,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless=new --disable-gpu --disable-dev-shm-usage"
+      }
     },
     "assert": {
       "budgetsFile": "./lighthouse-budget.json"
