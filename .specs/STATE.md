@@ -84,6 +84,14 @@
   2. Executado deploy direto em produção no Cloudflare Pages via Wrangler CLI autenticado, publicando com sucesso o novo bundle de estilos com 31.63 kB de utilitários Tailwind, fontes Cinzel/Inter, efeito glassmorphism e fundo preto absoluto.
 * **Estado:** Resolvido e validado em produção.
 
+### Incidente UI #009 - Canvas 3D Ocultado por Z-Index e Backdrop Fora do DOM Correto
+* **Ocorrência:** O Cryptex 3D não aparecia na tela inicial porque seu container estava configurado com `-z-10` e a camada `.site-backdrop` (com blur e gradiente escuro) estava posicionada fora do `#main-site`, soterrando o WebGL atrás do background opaco.
+* **Resolução:**
+  1. Movido `<div class="site-backdrop"></div>` para o interior de `<main id="main-site">` (exatamente como no modelo legado original), fazendo com que a vinheta e o blur só se manifestem após o destravamento da mentoria.
+  2. Atualizado o z-index do container do `CryptexCanvas.vue` para `z-0`, garantindo renderização plena logo abaixo dos controles de interação (`z-40` e `z-50`).
+  3. Simplificada a detecção de teste para rodar o loop contínuo de 60fps para qualquer usuário em produção e desacelerar somente sob `?ci=1`.
+* **Estado:** Resolvido e publicado em produção no Cloudflare Pages via Wrangler.
+
 ---
 
 ## Configurações de Ambiente e Integrações

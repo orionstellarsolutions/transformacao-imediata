@@ -39,7 +39,7 @@ describe('CryptexCanvas.vue', () => {
   it('deve montar o componente e renderizar os containers de canvas e flash overlay', () => {
     const wrapper = mount(CryptexCanvas);
 
-    expect(wrapper.find('div.fixed.inset-0.-z-10').exists()).toBe(true);
+    expect(wrapper.find('div.fixed.inset-0.z-0').exists()).toBe(true);
     expect(wrapper.find('div.bg-white.opacity-0').exists()).toBe(true);
     expect(wrapper.emitted('update-rings-aligned')).toBeTruthy();
   });
