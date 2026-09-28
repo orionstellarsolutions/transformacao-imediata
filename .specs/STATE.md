@@ -1,8 +1,8 @@
 # Estado do Projeto e Histórico de Decisões (.specs/STATE.md)
 
 ## Estado Atual
-- **Fase**: Marco 2 - Fase 2 (Test Planner / Matriz de Testes Automatizados)
-- **Status Geral**: Requisitos refinados pelo Product Owner com decisões de negócio consolidadas (Hotmart, persistência de desbloqueio, dívida técnica do vídeo e plano em `.specs/tasks.md`). Passagem de bastão para o Test Planner estruturar a matriz de testes automatizados com cobertura $\ge 95\%$.
+- **Fase**: Marco 2 - Fase 4 & 5 (Quality Reviewer & Security Auditor / Auditoria Final)
+- **Status Geral**: Implementação das 7 tarefas atômicas concluída pelo Developer com commits semânticos por tarefa. Modelo legado HTML removido conforme `/migrate-html`. Validações locais (lint, type-check, vitest coverage e build) 100% aprovadas. Passagem de bastão para auditoria de Clean Code, SOLID, OWASP e deploy no Cloudflare Pages.
 
 ---
 
